@@ -9,9 +9,9 @@ int full(struct cell* c);
 //@ requires cellp(c, ?x);
 //@ ensures (x != none ? result == 1 : result == 0) &*& cellp(c, x);
 
-int push(struct cell* c, int x);
+void push(struct cell* c, int x);
 //@ requires cellp(c, none);
-//@ ensures result == 1 ? cellp(c, some(x)) : cellp(c, none);
+//@ ensures cellp(c, some(x));
 
 int pop(struct cell* c);
 //@ requires cellp(c, some(?v));

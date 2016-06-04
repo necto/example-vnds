@@ -34,16 +34,12 @@ int full(struct cell* c)
   //@ close cellp(c, x);
 }
 
-int push(struct cell* c, int x)
+void push(struct cell* c, int x)
 //@ requires cellp(c, none);
-//@ ensures result == 1 ? cellp(c, some(x)) : cellp(c, none);
+//@ ensures cellp(c, some(x));
 {
   //@ open cellp(c, none);
   c->v = malloc(sizeof(int));
-  if (c->v == 0) {
-    //@ close cellp(c, none);
-    return 0;
-  }
   *c->v = x;
   //@ close cellp(c, some(x));
   return 1;
