@@ -12,7 +12,6 @@ int main() {
   while(1) {
 #endif//KLEE_VERIFICATION
     int* p = recv();
-    if (p == 0) continue;
     if (full(cp)) {
       int sum = pop(cp) + *p;
       send(&sum);
