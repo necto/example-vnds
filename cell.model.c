@@ -1,4 +1,3 @@
-
 struct cell {};
 //@ predicate cellp(struct cell* c, option<int> x);
 
@@ -22,8 +21,7 @@ int push(struct cell* c, int x)
 //@ requires cellp(c, none);
 //@ ensures result == 1 ? cellp(c, some(x)) : cellp(c, none);
 {
-  if (klee_int("push_success")) return 1;
-  return 0;
+  return 1;
 }
 
 int pop(struct cell* c)
