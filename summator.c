@@ -16,6 +16,7 @@ int main() {
     if (full(cp)) {
       int sum = pop(cp) + *p;
       send(&sum);
+      assert(!full(cp));
     } else {
       push(cp, *p);
       //failure at this point will not be detected,
