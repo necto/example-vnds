@@ -13,8 +13,9 @@ int main() {
 #endif//KLEE_VERIFICATION
     int* p = recv();
     if (p == 0) continue;
+    int stored = pop(cp);
     if (full(cp)) {
-      int sum = pop(cp) + *p;
+      int sum = stored + *p;
       send(&sum);
     } else {
       push(cp, *p);
