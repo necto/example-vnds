@@ -1,9 +1,9 @@
 struct cell;
 //@ predicate cellp(struct cell* c, option<int> x);
 
-struct cell* alloc();
-//@ requires true;
-//@ ensures result == 0 ? true : cellp(result, none);
+int alloc(struct cell** c_out);
+//@ requires *c_out |-> ?x;
+//@ ensures result == 0 ? *c_out |-> x : (*c_out |-> ?c &*& cellp(c, none));
 
 int full(struct cell* c);
 //@ requires cellp(c, ?x);

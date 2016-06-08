@@ -14,15 +14,16 @@ struct cell {
                                      *i |-> v;};
   @*/
 
-struct cell* alloc()
-//@ requires true;
-//@ ensures result == 0 ? true : cellp(result, none);
+int alloc(struct cell** c_out)
+//@ requires *c_out |-> ?x;
+//@ ensures result == 0 ? *c_out |-> x : (*c_out |-> ?c &*& cellp(c, none));
 {
   struct cell* cp = malloc(sizeof(struct cell));
   if (cp == 0) return 0;
   cp->v = 0;
   //@ close cellp(cp, none);
-  return cp;
+  *c_out = cp;
+  return 1;
 }
 
 int full(struct cell* c)

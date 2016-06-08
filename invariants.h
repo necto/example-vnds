@@ -1,6 +1,6 @@
 #include "cell.h"
 
-void invariant_consume(struct cell* cp);
+void invariant_consume(struct cell** cpp);
 //@ requires cellp(cp, _);
 //@ ensures true;
 
