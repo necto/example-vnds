@@ -3,15 +3,20 @@
 struct cell {}* stub;
 //@ predicate cellp(struct cell* c, option<int> x);
 
-void alloc(struct cell** c_out)
+int allocate_successful;
+
+int alloc(struct cell** c_out)
 {
   klee_trace_ret();
   klee_trace_param_ptr(c_out, sizeof (struct cell*), "c_out");
   klee_make_symbolic(&stub, sizeof (struct cell *),
                      "allocated_cell_do_not_dereference");
-  *c_out = stub;
-  return;//may also enforce initialization,
-  //but it will be caught in validator anyway
+  allocate_successful = klee_int("cell_allocate_successfull");
+  if (allocate_successful) {
+    *c_out = stub;
+    return 1;
+  }
+  return 0;
 }
 
 int full(struct cell* c)

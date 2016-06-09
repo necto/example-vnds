@@ -1,3 +1,5 @@
+#ifndef CELL_H_INCLUDED
+#define CELL_H_INCLUDED
 struct cell;
 //@ predicate cellp(struct cell* c, option<int> x);
 
@@ -16,3 +18,5 @@ int push(struct cell* c, int x);
 int pop(struct cell* c);
 //@ requires cellp(c, some(?v));
 //@ ensures cellp(c, none) &*& result == v;
+
+#endif//CELL_H_INCLUDED

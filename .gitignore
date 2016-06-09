@@ -1,2 +1,6 @@
 *.bc
 klee-*
+_build
+v
+*.cmo
+validator

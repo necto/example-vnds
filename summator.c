@@ -3,7 +3,7 @@
 #include "invariants.h"
 
 int main(int argc, char** argv) {
-  struct cell* cp;
+  struct cell* cp = 0;
   alloc(&cp);
 #ifdef KLEE_VERIFICATION
   invariant_consume(&cp);

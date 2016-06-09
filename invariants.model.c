@@ -2,7 +2,7 @@
 #include "invariants.h"
 
 void invariant_consume(struct cell** cpp)
-//@ requires cellp(cp, _);
+//@ requires *cpp |-> ?cp &*& cellp(cp, _);
 //@ ensures true;
 {
   klee_trace_ret();
