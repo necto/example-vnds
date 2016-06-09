@@ -1,4 +1,4 @@
-#include <klee.h>
+#include <klee/klee.h>
 #include "net.h"
 
 int pkt;
@@ -12,7 +12,7 @@ int* recv()
   return 0;
 }
 
-void send(int*)
+void send(int* x)
 {
   //do nothing.
 }
