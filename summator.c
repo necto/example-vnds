@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv) {
   struct cell* cp = 0;
-  alloc(&cp);
+  if (!alloc(&cp)) return -1;
 #ifdef KLEE_VERIFICATION
   invariant_consume(&cp);
   invariant_produce(&cp);

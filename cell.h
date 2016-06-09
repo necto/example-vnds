@@ -14,7 +14,7 @@ int full(struct cell* c);
 
 int push(struct cell* c, int x);
 //@ requires cellp(c, none);
-//@ ensures result == 1 ? cellp(c, some(x)) : cellp(c, none);
+//@ ensures result == 1 ? cellp(c, some(x)) : (result == 0 &*& cellp(c, none));
 
 int pop(struct cell* c);
 //@ requires cellp(c, some(?v));

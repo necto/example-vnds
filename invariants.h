@@ -5,7 +5,7 @@
 
 void invariant_consume(struct cell** cpp);
 //@ requires *cpp |-> ?cp &*& cellp(cp, _);
-//@ ensures true;
+//@ ensures *cpp |-> cp;
 
 void invariant_produce(struct cell** cpp);
 //@ requires *cpp |-> _;

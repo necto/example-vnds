@@ -7,12 +7,12 @@ verify:
 validate:
 	mkdir -p v
 	ln -fTs ../vnds/validator/ validator
-	rm cell_spec.cmo
-	rm _build -r
+	rm -f cell_spec.cmo
+	rm _build -rf
 	corebuild -lib dynlink -I validator cell_spec.cmo -no-hygiene
 	cp _build/cell_spec.cmo ./
 	cd validator && make validator.byte
-	./validator/test_all.sh ./klee-out-0/ v . cell_spec.cmo
+	./validator/test_all.sh ./klee-last/ v . cell_spec.cmo
 
 clean:
 	rm -rf _build *.bc klee-* v validator cell_spec.cmo
