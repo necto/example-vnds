@@ -5,7 +5,8 @@ struct cell;
 
 int alloc(struct cell** c_out);
 //@ requires *c_out |-> ?x;
-//@ ensures result == 0 ? *c_out |-> x : (*c_out |-> ?c &*& cellp(c, none));
+/*@ ensures result == 0 ? *c_out |-> x :
+             (result == 1 &*& *c_out |-> ?c &*& cellp(c, none)); @*/
 
 int full(struct cell* c);
 //@ requires cellp(c, ?x);

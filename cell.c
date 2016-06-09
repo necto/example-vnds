@@ -16,7 +16,8 @@ struct cell {
 
 int alloc(struct cell** c_out)
 //@ requires *c_out |-> ?x;
-//@ ensures result == 0 ? *c_out |-> x : (*c_out |-> ?c &*& cellp(c, none));
+/*@ ensures result == 0 ? *c_out |-> x :
+              (result == 1 &*& *c_out |-> ?c &*& cellp(c, none)); @*/
 {
   struct cell* cp = malloc(sizeof(struct cell));
   if (cp == 0) return 0;

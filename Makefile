@@ -7,6 +7,8 @@ verify:
 validate:
 	mkdir -p v
 	ln -fTs ../vnds/validator/ validator
+	rm cell_spec.cmo
+	rm _build -r
 	corebuild -lib dynlink -I validator cell_spec.cmo -no-hygiene
 	cp _build/cell_spec.cmo ./
 	cd validator && make validator.byte

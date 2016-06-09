@@ -9,7 +9,7 @@ let fun_types =
                arg_types = [Ptr (Ptr cell_struct)];
                lemmas_before = [];
                lemmas_after = [];
-               leaks = [];};
+               leaks = [on_rez_nz_leak "cellp(_, _)" ~id:"cellp"];};
      "full", {ret_type = Sint32;
               arg_types = [Ptr (Ptr cell_struct)];
               lemmas_before = [];
@@ -35,7 +35,7 @@ let fun_types =
                            arg_types = [Ptr (Ptr cell_struct)];
                            lemmas_before = [];
                            lemmas_after = [];
-                           leaks = [];};]
+                           leaks = [leak "cellp(_, _)" ~id:"cellp"];};]
 
 let fixpoints =
   String.Map.of_alist_exn []
