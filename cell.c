@@ -14,15 +14,17 @@ struct cell {
                                      *i |-> v;};
   @*/
 
-struct cell* alloc()
-//@ requires true;
-//@ ensures result == 0 ? true : cellp(result, none);
+int alloc(struct cell** c_out)
+//@ requires *c_out |-> ?x;
+/*@ ensures result == 0 ? *c_out |-> x :
+              (result == 1 &*& *c_out |-> ?c &*& cellp(c, none)); @*/
 {
   struct cell* cp = malloc(sizeof(struct cell));
   if (cp == 0) return 0;
   cp->v = 0;
   //@ close cellp(cp, none);
-  return cp;
+  *c_out = cp;
+  return 1;
 }
 
 int full(struct cell* c)
@@ -36,7 +38,7 @@ int full(struct cell* c)
 
 int push(struct cell* c, int x)
 //@ requires cellp(c, none);
-//@ ensures result == 1 ? cellp(c, some(x)) : cellp(c, none);
+//@ ensures result == 1 ? cellp(c, some(x)) : (result == 0 &*& cellp(c, none));
 {
   //@ open cellp(c, none);
   c->v = malloc(sizeof(int));
