@@ -14,6 +14,9 @@ validate:
 	cd validator && make validator.byte
 	./validator/test_all.sh ./klee-last/ v . cell_spec.cmo
 
+check_component:
+	verifast -c cell.c
+
 clean:
 	rm -rf _build *.bc klee-* v validator cell_spec.cmo
 
